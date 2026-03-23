@@ -839,10 +839,8 @@ Uses VPN client (software) <- the host installs software
 
 Clientless → Remote Access without software
 
-
 Methods for encapsulating;
 PPP; Used serial communications to encapsulate, meaning it Encapsulates on Data Link Layer, common for WAN Links and older dial up connections.
-
 GRE; Encapsulates IP Packets. When moved around next hop routers it is in L2, the routers only looks at  Outer GRE, until it’s finally on destination Router. And then decapsulates it.
 Outer GRE; A packet  that has Ip src and IP Header.
 IP Security; Internet Protocol Security (IPSec) also operates at the Network layer of the OSI model to authenticate hosts and encrypt packets. IPSec is used with other protocols to provide connection security, and it is increasingly used as a standalone VPN protocol.
