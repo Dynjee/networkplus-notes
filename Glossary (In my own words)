@@ -1,3 +1,26 @@
+Authoritative; Server that actually holds the DNS Records for a domain.
+Non-Authoritative; When you query a DNS server that doesn’t own record but has cached it from a previous query the answer it gives is non-authoritative
+Recursive is when the client asks DNS server, and then it knows it/how to resolve it
+Iterative is when client asks the DNS server, and if it doesn’t know, it asks other DNS server step by step. First being the root, then the TLD until it finds the authoritative server.
+
+Secure Shell; CLI. Port 22 TCP, Compatible with more systems; UNIX, LINUX, etc. And can connect to network appliances (switches, routers and firewalls) SSH can be used as the SFTP (secure File transfer Protocol) 
+
+SSH host Key; identified by a public/private key pair referred to as host key. 
+
+SSH client Authentication; Methods for client to authenticate to SSH
+-Username/password; Client enters Credentials 
+-Public Key Authentication; Each remote users public key is added to a list of keys authorized for each local account on the SSH server
+-Kerberos; client submits TGT obtained when user logged onto workstation to the server using GSSAPI. SSH server contacts the TGS to validate the credential for SSO.
+
+Telnet; Telnet is a both protocol and terminal emulation software tool that transmits shell commands and output between a client and the remote hosts in order to support telnet Access
+Telnet Daemon listens on TCP port 23. Telnet is not encrypted therefore vulnerable to packet sniffing and replay.
+
+RDP; (remote desktop protocol) 
+GUI. runs on TCP 3389.
+RDP should be also configured to require NLA. (Network Level Authentication) NLA protects the RDP server against DoS attacks. Without NLA, The system configured a desktop before the user logs on. A malicious user can create multiple pending connects to try to crash system.
+RDPRA; Mitigates against DDos Attacks 
+SAW: Secure Administrative Workstation; A dedicated machine only for administrative access, Low attack surface.
+
 ND; replaces ARP in Ipv6
 ND;  uses RS and RA 
 RS Hosts asks
@@ -40,11 +63,6 @@ Kerberos has 3 parts; client, server and KDC
 KDC has two parts;
 Authentication Server; Authenticates the User
 TGS; Once Authenticated, KDC gives TGT (Ticket) which allows access to resources and enables SSO
-
-Digital Certificate; 
-PKI;
-Self-Assigned Certificate;
-
 
 TCP handshake
 Handshake; SYN <-> Client, SYN/ACK  <-> Server, Generate sequence number (random) ACK <-> Client, ESTABLISHED State. (increment sequence number by 1
@@ -111,8 +129,6 @@ Cloud security; Enforce rules to accounts, VPC, subnets and instances.
 L3; Filtering IP, or TCP/UDP ports 
 L4; Stateful filtering 
 L7; Examine the headers; Ex; HTTP deny 
-
-Implementations; host based filtering 
 
 ZTA; zero touch Provisioning. inherently distrust nodes/services they need to get authorized/ authenticated first to make requests.
 
@@ -185,7 +201,6 @@ Jumbo frames is one that supports a data payload up to 9,216 bytes.
 
 SSH; remote connection secure can be used with SFTP
 
-
 STP; 802.1D; Prevents switching loops
 BPDU; Switches Exchange Information for STP.
 -Designated Ports; Forward traffic Down Root bridge
@@ -195,12 +210,6 @@ BPDU; Switches Exchange Information for STP.
 RSTP; 802.1w; prevents switching loops – with faster convergence. STP has downtime of 30-50 seconds while RSTP has 1-3 Seconds Downtime
 
 ECMP; Spine and leaf uses this to distribute traffic between links to spine and leaf is loop free
-
-
-
-
-
-
 
 
 VLANs; Logical dividing of IP networks, Different groups of computers in the same cabling attached switch. Separate broadcast domain.
@@ -215,7 +224,6 @@ PORT tagging;
 Untagged ports; ports that only participates in single VLAN cam be configured as untagged
 Tagged
 VoIp - Voice over IP. meaning voice data is sent in packets not like circuit switching
-
 
 
 RAS; Remote Access Server.
@@ -241,12 +249,6 @@ PoP; Point of Presence; location where ISP place where other users can connect t
 IXP; Theres no Single company that owns the traffic Flow. Internet eXchange Point is where CDNs, ISPs, and big companies meetup for peering.
 
 Zigbee; Low power, low cost used in IoT communication. uses AES 
-
-In-Bound Management
-
-
-
-
 
 MLD; Allows nodes to join a multicast group and discover whether members of a group are present on a local subnet
 ND; Neighboring Discovery used in Ipv6, same functions as ARP in Ipv4.
@@ -309,8 +311,6 @@ STP; 50-30 sec
 NAC; Provides the means of using an EAP method when a device connects to an Ethernet switch port.
 PAM; Pluggable Authentin ation Module
 
-Locally administered IPv6
-
 Dynamic Routing protocols; Allows Routers exchange information about known networks and possible paths. Best routes given.
 EIGRP; Cisco-proprietary, Distance-Vector, Flat unlike OSPF that's hierarchical.
 OSPF;Link-state vector, hierarhical. 
@@ -326,7 +326,6 @@ can support 802.11b
 802.11ax; 10G, 2.4, 5 Ghz, 6 Hz, UL MU-MIMO Uses OFDMA which divides a channel into Resource Units (RU)
 Smaller RU; Lower data rate but also allows more devices to connect
 Higher RU; Higher Data rate
-
 
 CSMA/CD; To cope with contention, sends CTS
 And then all devices stop transmitting traffic
