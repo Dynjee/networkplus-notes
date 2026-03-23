@@ -1,0 +1,877 @@
+ND; replaces ARP in Ipv6
+ND;  uses RS and RA 
+RS Hosts asks
+RA Router Answers
+ND is used in SLAAC. SLAAC sends RA to configure automatic addressing.
+
+NTS; Network Time Security
+NTP; Uses atomic clock. Udp port 123. Stratum 0
+PTP; More precise than NTP. uses satellites.
+
+DHCP AGENT/RELAY; Agent is the DHCP server. To set up relay u set up the router to do it
+IP helper; Forwards UDP packets, can forward dhcp, ntp, tftp, etc.
+
+FHRP; Redundancy for Routers. There alot of variations of FHRP like HSRP and VRRP.
+HSRP; Cisco, Uses the term Active and Standby Routers. Uses VIP. Higher priority -> selected active router 
+GLBP; allows for active/active load balancing config.
+VRRP; Open standard, Uses term Master and Backup Routers. Uses VIP but it doesn't require for unique IP addresses to be configured so it’s better for saving IP addresses. Higher priority = master
+MTBF; Expected life expectancy 
+MTTF; Non repairable components
+MTTR; Mean time to repair.
+RTO; Maximum Down time
+RPO; Maximum data loss
+WRT; Work time objective, extra time for backups.
+Clustering; Allows multiple processing nodes for redundancy.
+Active/passive; Performance not affected in failovers
+Active/Active; Both nodes processing connections. Performance degraded if a node fails
+
+BCP; Businesses recovery plans
+threaten the work sites.
+BIA; Business Impact and risks.
+Tabletop; Teams Discuss and work through scenarios.
+
+Federation; allows networks to be accessible to more than one network. Ex; U Sign in to Google, now u can log in to google docs/youtube.
+SP (service provider) trust w/ IDP (identity provider) 
+Client requests and authenticates. IDP token signed. Enabling federation. The key is stored in a SAML. (XML) and the communications are established using HTTPs and the SOAP simple object access protocol; It’s a messaging protocol used for communication between applications. Common ; HTTPs.
+
+Kerberos; One method of allowing SSO. 
+Ex; kerberos is used for SSO in AD.
+Kerberos has 3 parts; client, server and KDC
+KDC has two parts;
+Authentication Server; Authenticates the User
+TGS; Once Authenticated, KDC gives TGT (Ticket) which allows access to resources and enables SSO
+
+Digital Certificate; 
+PKI;
+Self-Assigned Certificate;
+
+
+TCP handshake
+Handshake; SYN <-> Client, SYN/ACK  <-> Server, Generate sequence number (random) ACK <-> Client, ESTABLISHED State. (increment sequence number by 1
+RST; To end connection abruptly. abnormal.
+TCP Teardown
+Client Sends FIN, Enters FIN-WAIT1
+Last State; TIME-WAIT then client closes connection
+
+UDP; Connectionless. The header is 8 bytes. TCP is 20 bytes. Protocol number 17.
+
+Spine and Leaf; supporting east-west traffic and SDN, overlay networks.
+Spine; Backbone of top tier distribution switches
+Leaf; Access Switches. Uses ToR.
+Spine and leaf topologies are loop free. Uses ECMP to distribute traffic between links
+ToR Switches; Leaf Switches. High speed omg. 10/40 GbE 
+SAN; Storage Area networking. Isolated from the main network to avoid performance issues. 
+Accessed only by servers. SAN can integrate different types of storage technologies; RAID, tape libraries, tape drives, etc. supports different types of SAN fabrics
+Fibre Channel; Uses Fiber Optic Cables but doesn’t rely on it. Has 3 components;
+Initiator; HBA Host Bus Adapter transceiver to let you access to the storage area network.
+Target; Storage drives. Includes; RAID arrays, Tape libraries and tape drives. Divided into logical volumes. Uniquely identified via LUNs 64 bit identifier
+FC switch; Interconnection between initiator and target
+
+Initiator And targets can be identifiers are called WWN. 64 bits similar to MAC addresses WWNN; can allocate WWN. WWPN; Identifier for ports. 
+
+Converged Ethernet; Encapsulates Fibre Channel Over Ethernet Packets. 
+FC-oE; Needs 10/40/100G Adapters that combine NIC and HBA, ← referred to as CNA 
+RCoE; NVMe over RDMA better than NVMe/FC as it separates CPU and storage utilization.
+
+TCP/IP; iSCSI tunnels data over IP network.
+iSCSI works with ordinary ethernet unlike Converged ethernet. Its the alternative.
+NVMe-TCP; Works over standard traffic (bad)
+! a san is never in the production network as this can affect latency and bad for critical workload.
+
+IaaS = gives the server, mhm balancers red, SANs and the essentials of building the servers 
+PaaS; gives you the platform to build the softwre
+SaaS; Software, ready to use 
+Public; Hosted by CSP. Multitenancy 
+Private; Exclusive, Owned by you, Privacy and secure
+Hosted Private; Hosted by CSP. But you're the only host
+Hybrid; Mix of public and private. Flexible.
+
+Cloud connectivity; 
+Internet VPN; tenants can configure a VPN for their VPC. High latency. And cost-effective
+Site to site, Client to site and virtual customer gateway
+Direct Connect/colocation; Direct connection to the cloud, lower latency, but high cost
+Transit Gateway; 1;1 Connection the transit gateway acts as the Internet gateway. Other VPC connection. Complex to set up, but makes things convenient 
+
+Elasticity; Handle real time changes
+Scalability; The ability to increase resources/costs linearly as customer demand grows
+CDN; caching systems for high traffic web and apps improves performance by distributing content across geographically closer to the user 
+
+Cloud gateway; How a VPC can Communicate with other VPCs/Other subnets or the Internet
+Internet Gateway; Two way, 1;1 mapping, uses the pool of CSP or your own public pool.
+NAT gateway; One way, allows for inbound connection but can’t allow outbound connection
+VPN;Connection between VPC via a VPN or using CSP features 
+
+Cloud instances; NFV = Virtualized Appliances. 
+3 parts of NFV; VNF, NFVI and MANO
+VNF = Deploys the VMs
+NFVI = Allocates resources to the VNFs
+MANO = Positions the workflow and performs the forwarding 
+
+Cloud security; Enforce rules to accounts, VPC, subnets and instances.
+L3; Filtering IP, or TCP/UDP ports 
+L4; Stateful filtering 
+L7; Examine the headers; Ex; HTTP deny 
+
+Implementations; host based filtering 
+
+ZTA; zero touch Provisioning. inherently distrust nodes/services they need to get authorized/ authenticated first to make requests.
+
+SASE; Combines SD-WAN and SSE,
+SDWAN; connects remote sites 
+SSE; CASB, and ZTA are examples of SSE.
+
+SDN; Cloud services require constant provisioning and deprovisioning. Using automation and server instances too. Software Defined Networking is a model to do this
+Properties of SDN;
+Central Policy Management; Single “source of truth” on how the business should operate. Policies enforced 
+Transport agnostic; can use Ethernet, satellites, cellular, leased lines and Wi-Fi
+Zero Touch Provisioning; No need for manual configuration. Can automate usign scripts .
+Application Aware; Can identify Traffic Types and prioritize them (voice, video, and IoT) 
+SDN architecture
+Application Layer; Defines policies
+Infrastructure Layer; Handles the forwarding of the traffic 
+Management Plane; Monitors traffic conditions
+SDN Controller/Control layer; exposes APIs
+Northbound-API Application → Controller.
+Southbound-API; Controller → Infrastructure
+
+Controllers; WLC.
+-Controls Light weight APs by making them auto config SSID/channel
+WEP; Uses RC4. 
+WPA; Uses RC4. with TKIP replaces WEP
+WPA2; Uses AES/can use TKIP and CCMP. replaces WPA
+Open Wifi Sent without Cryptography
+WPA3; uses AES galois and GCMP
+Wifi Enhanced open; Encrypted traffic in Open Wifis 
+Captive Portal; Redirect before joining open WI-FI terms and conditions
+
+Demarc/MPOE; Termination between ISP and Customer 
+CPE; customers premises equipment
+T-carrier; Digitized Voice Traffic
+DS0; Each channel 64 Kbps
+DS1/T1; 20 DS0 = 1.544 Mbps (multiplexed) 
+
+DSL; Traffic between Telephone Lines.
+ADSL; Asymmetric.
+ASDL2;24 Mbps DL, 1.5/2.5 Mbps UL.
+SDSL; Symmetric DSL. same UL and DL 
+Splitter; Prevents noise traffic between voice and DSL modem.
+Cable internet; Traffic between CatV; Often called HFC. because they combine coax links to cpe.
+Cable internet connects to customer router via ethernet -> Coax Connects to WAN port/ Coax lines link multiple premises to CMTS -> Fiber backbone -> ISP.
+Standards;
+DOCSIS; DL 38 Mbps north america, Europe is 50 Mbps DL.
+DOCSIS 3; Allows multiple plexed channels higher B/W 
+
+FTTx; Defines fiber optic standards
+FTTC and VDSL;
+
+Point-To-Point; Encapsulation that works at data link layer. (layer 2) PPP is used to encapsulate serial communications.
+GRE; Generic Routing Encapsulation. Works at Layer 3. IP protocol 47. 
+Outer GRE; Has it’s 
+Link aggregation; bonding two links together
+NIC Teaming; from the hosts end, this can be called NIC Teaming. At switch end. It can be called port aggregation and is referred to by Cisco as an EtherChanel The term “bonding” is also widely substituted for Aggregation
+802.3/ad/802.ax ; Link aggregation standard.
+802.3ad also defines the LACP 
+LACP; used to detect configuration errors and recover from the failure of one physical links.
+
+MTU; Standard Ethernet frame has a maximum length of 1,518 bytes. Excluding the preamble.
+Each frame has an 18 byte header.
+6 byte destination and source MAC address fields.
+4-byte error checking field
+2 byte Ether Type field
+So the maximum size of data payload is 1,500 bytes.
+Jumbo frames is one that supports a data payload up to 9,216 bytes.
+
+
+
+SSH; remote connection secure can be used with SFTP
+
+
+STP; 802.1D; Prevents switching loops
+BPDU; Switches Exchange Information for STP.
+-Designated Ports; Forward traffic Down Root bridge
+-Root Ports; Forward Traffic UP Rootbridge
+-Blocked Ports; Disabled ports, ports that could cause Loops are disabled.
+
+RSTP; 802.1w; prevents switching loops – with faster convergence. STP has downtime of 30-50 seconds while RSTP has 1-3 Seconds Downtime
+
+ECMP; Spine and leaf uses this to distribute traffic between links to spine and leaf is loop free
+
+
+
+
+
+
+
+
+VLANs; Logical dividing of IP networks, Different groups of computers in the same cabling attached switch. Separate broadcast domain.
+Ex; VoIP handsets VLAN to decrease interference and give priority.
+Commands;
+Vlan 16
+Name vlan16
+Interface range gigabitEthernet0/1-13
+Switchport access vlan 16 
+No vlan <- deletes vlan.
+PORT tagging;
+Untagged ports; ports that only participates in single VLAN cam be configured as untagged
+Tagged
+VoIp - Voice over IP. meaning voice data is sent in packets not like circuit switching
+
+
+
+RAS; Remote Access Server.
+Site-to-Site;
+Host-to-Host;
+Client-To-Site; 
+AH; Authenticates and Integrity by calculating ICV.
+ESP; Encrypts the payload
+ICV; Integrity to make sure IP payload has not been modified… Checksum for AH ( mandatory) and ESP (option) ESP has 3 headers, A header, Trailer ( extra padding for cryptography) and ICV. But unlike AH, ESP excludes the IP header when calculating ICV
+Transport mode; Only encrypts payload but not IP header, meaning can see src and dst.
+Tunnel mode; Encrypts whole packet. Payload and IP header. Hides real IP src and dst.
+
+IKE; Authenticates by keys.
+Phase 1; Establishes and identifies by using PSK or digital certificate
+Phase 2; Uses secure tunnel made in Phase 1, Chooses what key size/cipher to use in AH Or ESP
+
+
+L2TP/; Layer 2 tunneling protocol. IPSec.
+
+MultiHoming; Practice of connecting a single network or host to two or more ISPs or networks.
+MOBIKE; IKEv2. Allows IPSec VPN clients and servers to change either IP addresses without dropping the vpn connection
+PoP; Point of Presence; location where ISP place where other users can connect to it
+IXP; Theres no Single company that owns the traffic Flow. Internet eXchange Point is where CDNs, ISPs, and big companies meetup for peering.
+
+Zigbee; Low power, low cost used in IoT communication. uses AES 
+
+In-Bound Management
+
+
+
+
+
+MLD; Allows nodes to join a multicast group and discover whether members of a group are present on a local subnet
+ND; Neighboring Discovery used in Ipv6, same functions as ARP in Ipv4.
+IGMP; Used in Ipv4 to manage group memberships. (Multicast) 
+
+Fragmentation; If packet exceeded MTU (1518 bytes), it will fit it into manageable pieces of the data link layer frame.
+
+Out-Of-Bound Management OOB; Separate tunnel for management more secure than Inbound
+
+Authentication; 
+IAM; Principle that is commonly implemented in modern networks. Identification, authentication, authorization and accounting.
+
+Windows authentication
+LSA; Local Security Authority Compares Credentials to the SAM. Security Accounts Manager.
+
+Windows Network signin. LSA can pass the credentials for authentication to network services
+
+Crossover cable; use if legacy, 
+Straight Through cable; use if AUTO-MDIX is compatible
+Switches;
+Microsegmentation; each port, different collision domain
+
+RDPRA; RDP restricted admin
+Jump-Box; An administrative Computer only, restricted to outside access.
+
+PoP; Location where ISP Place
+CMTS; Location where CATV termination
+HFC; Hybrid Fiber Coax, CATV uses this, copper in homes but fiber to for CMTS
+DOCSIS; The standard for 
+DSLAM; Location for DSL termination
+Splitter; divides and separates channels Ex; telephone and DSL modem separation.
+
+LSA; Local Security Authority; Windows authentication compared submitted credential to hash stored in SAM 
+
+SAM; Security Accounts Manager database hash which is part of registry.
+
+NTLM; If no Kerberos, this is legacy for authentication
+
+EAP: Framework for authentication protocol 
+
+(802.1x) Has a lot of methods for security.
+
+TGS; ticket granting
+802.1x; Uses AAA. (Authenticate, Authorization, Accounting) uses EAP
+
+SSO; Kerberos provides SSO;
+Kerberos;Security Protocol for SSO. 
+
+KDC; Key Distribution center; there are two services; Authentication and ticket granting.
+Authentication; Authenticating user logon request
+Ticket Granting; To access resources within the domain.
+Client requests a ticket (TGS; Ticket Granting Service) to grant access a target application
+802.11h
+
+802.1w / RSTP; Prevent switching loops, while converging fast. 
+802.1d / STP ; Slower than RSTP / 802.1w
+RSTP; 1-6 sec 
+STP; 50-30 sec
+
+NAC; Provides the means of using an EAP method when a device connects to an Ethernet switch port.
+PAM; Pluggable Authentin ation Module
+
+Locally administered IPv6
+
+Dynamic Routing protocols; Allows Routers exchange information about known networks and possible paths. Best routes given.
+EIGRP; Cisco-proprietary, Distance-Vector, Flat unlike OSPF that's hierarchical.
+OSPF;Link-state vector, hierarhical. 
+Area 0/Backbone; Appliances must connect to area 0 (invisible to them, but still logiocally connected) to know every location of other appliances
+RIP; Oldest Routing Protocol -> Evalutes by hops.
+BGP; Border Gateway Protocol. This protocol is unique, It connects between ASes (Autonomous Systems), Unlike OSPF, EIGRP, ISIS, and RIP. which is within an AS.
+802.11a; 54 Mbps. 5 Ghz, uses OFDM for signal modulation
+802.11b; 11 Mbps. 2.4 Ghz, Uses CCK and DSSS for signal modulation
+802.11g; 54 Mbps. both 5 Ghz and 2.4 Ghz 
+can support 802.11b
+802.11n; 72 Mbps per upstream also known as WiFi-4; New features; MIMO and Channel Bonding.
+802.11ac; 2,167 Mbps, 5 Ghz DL MU-MIMO 
+802.11ax; 10G, 2.4, 5 Ghz, 6 Hz, UL MU-MIMO Uses OFDMA which divides a channel into Resource Units (RU)
+Smaller RU; Lower data rate but also allows more devices to connect
+Higher RU; Higher Data rate
+
+
+CSMA/CD; To cope with contention, sends CTS
+And then all devices stop transmitting traffic
+
+2.4 Ghz; Better penetration materials, allowing for longer ranges, less individual channels.
+5 Ghz; Less efficient penetrating materials, higher data at shorter ranges, more individual channels.
+
+Cellular Technologies;
+Find nearest cell or base. Range; 5 Miles ; 8 Kilometers
+4G/LTE; 4G theoretical rate is 300 Mbps but 20 Mbps real world. LTE-A; 90 mbps
+5G; Massive MIMO, Needs hundreds of small antennas
+Instead of a large big one. Theoretical rate; 20G; realworld; 300 mbps
+
+Satelite;
+Satellite are expanding due to not requiring DSL or cable lines, especially in rural areas. uses microwaves
+GEO; Geostationary Satellites, Satellites are far on the orbit Very High latency. Installed using VSAT dishes, Satellites doesn’t need to be realigned
+LEO; Better B/W. Satellites are closer. However, dish antenna needs to be realigned periodically as satellites move
+GPS; Calculate location. Needs multiple signals from satellites to triangulate position.
+
+Dualband adapters; 2.4 Ghz and 5 Ghz have separate MAC addresses. 
+SSID; The network name you see when connecting to a network. If broadcasted u can see it on list but if not, you’ll have to enter it manually.
+BSS;Group of Clients connected to the same AP
+BSSID; AP’s Unqiue MAC address radio, Unique Identifier of the BSS
+if a client connects to an SSID underpinned by multiple BSSs, it tries to determine which BSSID offers the best signal.
+DS; Distribution System can be used to network multiple Access points.
+ESS; group of Basic Service Sets that are all configured on the same SSID and security information
+Each BSS uses a different channel within each frequency band. When deployed like this the network name is more properly called an ESSID, An ESSID has the same format as an SSID
+
+QoS; how data should be prioritized over the network;
+Three planes of QoS
+Control plane; how the data should be prioritized and where to switch it
+Data Plane; does the actual switching of data.
+Management Plane; Monitors traffic conditions.
+Traffic shaper; Ensures the priority traffic gets prioritized
+Traffic policing; Drops packet when a traffic reaches exceeded threshold
+
+DiffServ; Priority for L3, in the type of service field in Ipv4, for Ipv6 in the traffic class. Diffserv has a DSCP value.
+DSCP value; Diffserv value on how to treat a packet
+Ex;  voip; 46 dscp value, email 0 dscp = higher value; prioritize.
+
+802.1p; Priority for L2 for ports and vlans (802.1Q) defines tagging with 802.1Q sets value between 0 to 7
+CoS; Tagging mechanism ( drop , prioritize, queue ) to identify frame and or packet glass. for both DiffServ and 802.1P. It’s a classification concept.
+
+MPLS
+RED; Random Early Detection. Congestion avoidance / queue management system to avoid congestion from happening in the mean time/future
+
+Ipfix; IPFIX is an IETF-standard protocol used to export network flow information from devices to a collector for traffic analysis.
+Netflow; cisco, flowing data.
+
+Iterative Lookups;
+Recursive lookup; client contacts DNS server. If doesn’t find it contacts root server. 
+If DNS that doesn’t know the answer, and then asks roots, it’s iterative; What it does know the
+
+Iterative; dns resolver asks each server step by step each server gives the best info it knows (a referral to another server) 
+And then it stores it in a cache so the DNS server already knows it
+
+Broadcast; Sends all packet frame to all in broadcast domain
+Unicast; 
+Multicast;
+Anycast;
+
+CAM: mac addresses
+SFD: Start Frame delimeter.
+VSLM: How many IP addresses that needs to be saved/necessary needed to save space
+Kerberos; authentication service for sso.
+KDC; Key Distribution Center
+RFC1918: standards for private addressing
+
+Dual stack; Using Both ipv6 and ipv4 simultaneously 
+
+Tunelling;
+6to4; uses prefix
+6RD; Enhanced 6 to 4. improvement; Managed ISP prefix and speed
+Teredo; for windows only
+Miredo; Open source tunneling for teredo for Unix and Linux Systems
+Gre; Mature way of tunelling.
+Nat64: Uses special Prefix 2001 To Forward Ipv4 then strips it at destination.
+
+
+NAT: Translates Private IP/Public IP
+Static Nat; 1:1 Mapping. 1 private and 1 public. useful to connection requiring inbound connections 
+Dynamic NAT; Pool of IP addresses 
+PAT; Uses port to uniquely identify a Device 
+
+VyOS; VyOS is a network operating system designed to be managed almost entirely via a command-line interface (CLI). Think of it as a Linux-based OS that turns a machine (physical or virtual) into a full-featured router/firewall.
+
+RIP; Distance Vector. Limit 15 hopcount.
+Area 0; Backbone of OSPF, where all  routers connect, but invisible to the 
+Edge Router; On the perimeter of the network. frames LAN/WAN
+PE; Premises Side of Edge Router
+CE; Customer side of edge router
+
+AD; Administrative Distance.. One of the Metrics routers use to forward packet. 
+Lower AD Is more trusted and secure
+
+AH; Authentication Header (I always get those mixed up lol) 
+HA; High availability cluster, for load balancing and redundancy.
+CDP; Cisco Proprietary Protocol, for device discovery. such as discovering AP’s and roters
+
+AS: A Network controlled by single owner/organization.
+IGP; Interior of an AS
+EGP; Exterior of an AS.
+
+DMZ; perimeter network, segregates the “private network”
+
+NFV; Virtualization for appliances.
+VNF; Virtualization 
+NFVI; Allocation of resources
+MANO; Management for NFV
+
+SIP; Session Initiaton Protocol 
+
+FQDN; Fully Qualified Domain Name; DNS
+PDU; data unit Defines OSI Layer
+PDU; Power Distribution Unti
+
+TCP; Transmission control protocol, Protocol number 6. Connection-oriented
+UDP; User Diagram Protocol, Protocol number 18, Connectionless.
+RST; Force end TCP / SYN ack process
+SMB; Server Message Block
+DHCPv6; DHCP For Ipv6 Stateful
+
+RDP; Remote Desktop Protocol
+MySQL; port 1433 Oracles SQL
+VNC ; Alternative to RDP, 
+APC; Angled. 8 degrees. Green APC IS TIGHTER
+UPC; Polished, Blue. 
+DHCP Relay; Server that gives out the DHCP
+DHCP Scope; 
+
+Multicast is used where a single source to multiple interfaces, the prefix being ff00 (can vary due to flags and scope)
+Example of scope;
+Ff02; Link local
+Ff01; all interfaces have the same node.
+MLD manages the group memberships, and allows discovery of the nodes in the multicast;
+Ex; DHCPv6 scope = ff02::1:2, ff02::5 <- OSPF, ff02::2 <- all router, ff02::1 <- all nodes.
+
+ISO; Creator of OSI Model
+IEEE 802.11; Wireless Networkinh
+IEE 802.3 - Ethernet Standards by categories
+IEEE 802.11 - WiFi Standards
+IEEE 802.1X - Tagging/Tagging
+RFC 1918 - Private addresses
+RFC 3927 - Link Local Address Configuring
+ICANN; controls DNS
+IANA; Provisions IP addresses.
+FTTH; Fiber to The Hone
+APIPA - 169.254.0.0/16, Automatic.
+MLD - Multicast Discovery for IPv6
+ND - Neighbour Discovery. Replaces ARP For IPv6
+ND ; arp but for ipv6
+SLAAC - Stateless, Automatic addressing for IPv6 Uses RA’s. 
+
+DHCPv6 - Stateful, meaning theres more options. For IPv6.
+IPAM - Ip Address Management
+RS; router solicition 
+RA; Router Advertisement
+STATELESS; Doesn't preserve information
+STATEFUL; Preserves information
+ICMP;  Protocol Number number 1, tests connectivity. if blocked it doesn't allow it to be tested
+
+Multicast is used where a single source to multiple interfaces, the prefix being ff00 (can vary due to flags and scope)
+Example of scope;
+Ff02; Link local
+Ff01; all interfaces have the same node.
+MLD manages the group memberships, and allows discovery of the nodes in the multicast;
+Ex; DHCPv6 scope = ff02::1:2, ff02::5 <- OSPF, ff02::2 <- all router, ff02::1 <- all nodes.
+FE80 - LINK-LOCAL
+FF02 - Multicast prefix for ipv6
+EUI-64 - PUT FFFE IN THE MIDDLE OF MAC TO MAKE IT INTERFACE IPV4
+Dual-stack; most efficient runs both simultaneously 
+NAT64; uses specific prefix to convert IPv4 to Ipv6 
+The prefix for NAT64; 64:ff9b::/96 <-- then strips it
+
+Tunelling
+TEREDO - Windows for Tunelling
+MIREDO - LINUX, UNIX For tunneling
+both encapsulates 
+Alternative; GRE, A more mature approach.
+
+DTLS - UDP TLS.
+TLS - Transport Layer Security 
+CA - Digital Certificate
+PTP - Precision Time Protocol 
+NTP - Network Time Protocol.
+Stratum - part of NTP to correctly set time NTP is UTC Based
+ThunderBird - email for firefox
+Demarc - Boundary between ISP and customer
+POTS - Legacy. VoIP Is better
+IMAP - Receives 143. Secure 993
+POP3 - Receives. 110. Secure 995
+SMTP - Sends. Sends mail by using dns to lookup the mx record listing an ip address for remote recipient and establishes connection with remote domain.
+Port 25. Secure 465 (USES TLS) 
+Area 0 - Also known as backbone for OSPF not seen. Where all Networks conenct. 
+
+Ipv6 addressing;
+Global Unicast; routable on the internet.
+-Prefix 2000:3//
+-the two indicates that it’s a global unicast.
+-The next 45 bits is the global routing prefix
+-next 16 bits is the subnet bits. To specify what subnets allows 65,535 subnets,
+-Interface ID
+EUI-64;Unique MAC address to make interface ID in IPv6. /64. Steps;
+Put FFFE in the middle on the Mac address
+Flip the 7th bit, (if its 0 then make it 1, if its 1 make it 0)
+Link-Local; Inter networking. Only works in a local subnet; Prefix; fe80::/1 the next 54 bits are set to 0, and then 64 bits for the interface ID.
+Multicast; A single source to multiple network interfaces
+Prefix ff00::/ (can vary due to flags/determining the scope) examples for ; ff02; for link-local, ff01; node local (all interfaces on same node, ff02::5; OSPF routers)
+Broadcast is not in IPv6 as Hosts use an appropriate multicast address/well known broadcast address  for any given situation as shown above.
+MLD; Manages Multicast memberships. Discovers the presence of multicast listeners.
+
+
+RTP - Real time Protocol. UDP. How data flows in real time
+SIP - Initiates UDP. Protocol 5060, 5061 
+QoS - Router option. To set Priority and low priority sort by 6 bits DSCP. 
+
+SME - Small Medium enterprise network 
+
+VIP - Virtual IP address, common in Redundancy to set only 1 address for 2 devices also unique mac address
+Allows first Hop Redundacy if router/default gateway breaks
+
+FHRP - FIRST HOP REDUNDANCY 
+VRRP; Virtual IP 
+
+DKIM; Key Signing Zone. signing an email that its authorized.
+SPF; Prevents Spoofed emails.
+DKIM; Ensures email has not been tampered
+
+PTR; for reverse lookup zone, Reversed
+CNAME; alias
+A; Ipv4  
+AAAA; Ipv6
+DNSSEC Help to mitigate against spotting and poisoning attacks on DNS servers by validation process for DNS response, Validates the records held by a name server.
+DN; Distinguised Name.
+DNS ENCRYPTION TO prevent on path threat actor tampering with responses DNS: 
+DNS Over TLS, DoT, uses tls to validate the resolvers name server’s CA (DIGITAL CERTIFICATE)  
+DNS Over HTTPS, DoH, Validates CA and encrypts dns by Encapsulating HTTP secure packets. ( 6.5.10 ) 
+SRV; Contains service name and port on which a particular application is hosted. 
+MX; Mail Services
+
+PoE; Powewr over Ethernet
+802.at ; 15 watts
+802.3at ; 25 watts 
+802.3bt ; 50 watts
+PoE Power Over Ethernet. Removes the necessity to use any power cables. 
+SIEM: 
+C: Confidentiality
+I: Integrity
+A: Availability
+
+NAC ; Network Access Control; Authenticating endpoints to not get exploited by rogue services or devices; A basic NAC can be put configuring port security configurations
+
+DUAL-polarization
+Polarization; transceive and receive
+
+Demarc/MPOE; Termination point between provider and ur premisess/customer
+Any cable problems arising from other side of demarc point are ur responsibility/custoemr
+CPE; Customer Premises Equipment. Devices installed by customers
+
+T carrier; Enabled voice traffic to be digitized for transport around the core of the telecommunications network.
+T carrier is a TDM that assigned time slots for each circuit (channel) each 64 kbps channel provides enough BW for digitized voice call
+
+T1/DS1; 1.544 Mbps = 24 channels multiplexed for more bandwidth.
+T1 Typically use High-Level Data Link Control (HDLC) or Point-To-Point Protocol
+
+DSL; A technology for transferring data over voice grade telephone lines. A DSL connects to RJ-11. A splitter is installed on each phone point to prevent noise fro maffecting the dsl modem and voice.
+
+ADSL; Asymmetric UL and DL. ADSL2; 25 Mbps DL 2.5 Mbps UL 
+SDSL; Symmetric UL and DL 
+
+Cable Internet;
+A cable internet connection is usually available along the cable access TV (CATV) these networks are often described as HFC Hybrid Fiber Coax. Because they combine fiber optic core network with coax links to CPE.
+
+Coax links all the premises in a street, CMTS. which routes data traffic via fiber backbone to ISP’s POP
+DOCSIS; 38 Mbps DL (north america) 50 Mbos DL ( europe) and UL 27 Mbps.
+DOCSIS 2; Allows for multiplexed channels to achieve higher bandwidth
+
+FTTx <- term for fiber optic
+FTTC and VDSL
+FTTC: means copper to the premises through a communications cabinet. 
+FTTC uses VDSL which stands for Very High Speed DSL it allowed for both symmetric and asymmetric modes. Over 300m (1,000 feet) 
+VDSL; Asymmetric 52 Mbps DL, 6 UL mnps
+VDSL2; Symmetric 100 Mbps BiDi (100m/300m)
+
+FTTP; Fiber all the way to premises.
+Full fiber connection type is implemented as a PON. in a PON a single fiber cable is run from PoP to an OLT located in a street cabinet. From OLT. Splitters direct each subscribers traffic over a shorter length of fiber to an ONT installed at Customers premises.
+The ONT is connected to the customers router using RJ45 Ethernet Patch cord.
+
+VDSL; 52 mbps. 
+VDSLv2; 100 mbps BiDi
+ADSL; Asymmetrical DL and UL. slowest
+
+DSL; RJ-11 port. 
+DSLAM; terminates DSL lines from many customers
+DB-9(RS-232); Modem serial mode used in aux port
+T.Digitizer; legacy for VoIP
+T-Carrier; Enabled voice traffic to be digitized. Uses TDM. Protocol assigns each circuit or channel a time slot. Each 64 KBS provides enough bandwidth for voice calls
+64 KBS; DS0 or Narrow band link
+1.544 Mbps; Full duplex digital connection DS1 or T1 Enough for Voice and data.
+
+T1 leased lines typically use High-Level Data Link Control HDLC or Point to point protocol PPP
+PPP/HDLC 
+HDLC; Bit Oriented Synchronous Protocol
+PPP; Data link protocol, is designated for point to point links.
+Both are Layer 2 WAN protocols used for point-to-point links (router-to-router).
+
+
+TACACS; Tcp 49 best for administration. Cisco Propietary 
+RADIUS; udp 1812/1813 best for 802.1x
+
+KERBEROS; for SSO
+kerberos uses KDC.
+KDC; 2 Services for granting access
+TGT; requests ticket to TGS
+
+SSID; The name you see in list when connecting to wifi
+BSS; 1 AP radio serving clients
+BSSID; The unique Identifier of 1 AP, based on radio/hardware
+ESS; Multiple BSSs in the same SSID enabling roaming/coverage
+ESSID;The same as SSID but whole network across APs
+If client connects to SSID w/ multiple BSS or ESS, it tries to determine which BSSID has the best signal range.
+DRS; Dynamic Rate Switching. To adjust data rates based on signal.
+Strong signal = High Data Rate
+Low Signal = Low Data rate
+Signal strength; Ratio of measurement of 1mW 0dBm = 1 mW. 
+RSSI; Received Signal Strength Indicator. Measures signals on client end. Closer 0 = Better
+-30 = Perfect, -60 = good, -80 = Bad
+SNR; Measures Signal Strength and Background Noise
+High SNR = Better.
+
+Wireless survey; making sure WLANs cover whole physical locations and all have data rates.
+Heat Map; show areas with bad signal = Orange/red
+And Good signal = Green/Yellow
+
+802.11r; Allows for auto reauthentication. Information quicker transitions
+Roaming should be seamless. Many adapters supporting “aggressiveness”
+Beacon Frames; Advertising WLAN APs, using Beacon Frames. Sent every 100ms 
+
+WDS; Wireless Distribution System. APs connect wirelessly without cabling. WDS must use the same SSID, Security and Channel. APs configured in repeater mode.
+
+Wireless Controller; Centralized and monitoring of all APs, dedicated hardware appliance.
+Autonomous AP; Smart, Has firmware, doesn’t need Controller
+Lightweight AP; Requires Controller to Function.
+Cisco Wireless Controller; Uses LWAPP allows light weight APs to automatically configure SSID, Security, standards and Channel alternatives; CAPWAPP
+Omnidirectional; Radiate equally all direction
+Vertical rod
+Unidirectional; Focused on 1 direction. Sender and receive must use directional antennas
+Yagi, Parabolic Dish/Grid
+Gain dB; Measures signal Amplification
+Narrow Beam; 10 very directional
+Wire Beam; 90 Less directional
+Polarization; Orientation of the Waves propagating from the antennas
+Dual Polarization; Can be installed in either direction. Best way to support mobile as these can be help by their user in a variety of orientations.
+
+
+Other Wireless Network Types
+Most Enterprise and SoHo networks use Infrastructure mode, but there are ways of wireless connection to establish peer-to-peer connections.
+Ad Hoc; Wireless Adapters allows connection from other adapters, not needing an AP Called (Independent Basic Service Set) IBSS, Must be within range. 
+Mesh; WMN. Unlike ad-hoc, nodes are capable of peering, and doesn’t need to be in range. Can perform path discovery and forwarding (Mesh Basic Service Set) so no range is needed
+Point-To-Point; Physical and logical Connection between two devices. A wireless point-to-point link usually is used in bridging where cables are not possible. Two endpoints only.
+
+802.11 - > better known as Wifi, defines layer 1 
+
+802.11a; 54 Mbps, 5 Ghz uses OFDM 
+802.11b; 11 Mbps, 2.4 GHz uses CCK and DSSS for signal encoding
+802.11b overlaps quite considerably, this means CCI is real.
+Non overlapping channels; 1,6 and 11.
+802.11g; 54 Mbps, 2.4 Ghz, uses OFDM compatible with 802.11b
+802.11n; also known as WiFi 4, New technology;
+MIMO -> Multiple antennas to handle multiple signals; using notation
+AxB;C 
+A; Transmit B; Receive C; Simultaneous Transmit and receive.
+Channel Bonding; Two adjacent channels combined into two, Wifi 4 allows for (40 MHz)
+WiFi 4 allows for 72 Mbps per stream link.
+802.11ac; Also known as WiFi 5, The goal of WiFi 5 is to reach Gigabits speeds.
+Only 5 Ghz
+Channel bonding for up to 80 Mhz or 160 Mhz. 8 spatial streams rather than 4.
+1 Gbps
+802.11 uses VHT.
+Wifi 5 values are marketed using AC values. AC5300 represents 1 Gbps over 40 Mhz channel
+802.11ax; 2.4 Ghz, 5 Ghz, 6 Ghz, 10 Gigabits. Also marketed as AX1100
+6 Ghz; Highest Speeds 
+Wifi 6 uses better modulation also called as high efficiency (HE)
+Wifi 6 uses OFDMA, which lets a single channel be split into smaller pieces called Resource Units (RU)
+Small RU -> lower speed but allows for more device to connect Large RU; Higher speed for devices
+Wifi 6 supports Wifi 5 and Wifi 4 APs.
+
+Definition words; 
+MIMO; Multiple Input Multiple Output, Multiple antennas to handle multiple signals
+OFDM; A modulation technique that splits data across many closely spaced sub-carriers to improve efficiency and reduce interference.
+OFDMA; An extension of OFDM that allows multiple devices to transmit simultaneously by dividing a channel into smaller sub-channels.
+Channel bonding; Combining two or more adjacent channels into one wider channel to increase data throughput.
+RU; Resource Units; A subdivision of a Wi-Fi 6 channel used in OFDMA to allocate bandwidth to different devices.
+MIMO; One device at a time, multiple antennas/streams for that device.
+MU-MIMO; Multiple devices simultaneously 1 antennae multiple devices
+6 Ghz; for higher speeds.
+
+
+802.11a; 54 Mbps, 5 Ghz and OFDM
+802.11b; 11 Mbps, 2.4 Ghz, Signal encoding CCK and DSSS
+802.11g; 54 Mbps, 2.4 Ghz, OFDM and compatible with 802.11b
+802.11n; Wifi 4. 72 Mbps, 2.4 Ghz and 5 Ghz, MIMO, and channel bonding up to 40 MHz
+802.11ac;Wifi 5. 2,167 Mbps, 5 Ghz, MU-MIMO, Uses VHT, Channel bonding; up to 80 and 160 Mhz. AP’s are marketed as AC5300; representing 1 Gbps over 40 Mhz.
+802.11a; Wifi 6, 2.4, 5 Ghz and 6 Ghz Also marketed as AX11000 
+6 Ghz Highest speeds.
+Wifi 6 uses better modulation as high efficiency (HE)
+MU-MIMO
+Wifi 6 Uses OFDMA which lets a single channel be separated into smaller pieces
+Called (RU) Resource Units
+Smaller RUs -> lower speed Larger RUs -> higher speed for device
+Wifi 6 allows for 10G speed 
+
+CSMA/CA; To cope with contention, CTS (Clear to Send) Then all stations do not attempt to transmit within that time period.
+
+2.4 Ghz; Better at penetrating materials Meaning Longer Range, However Less individual Channels
+5 Ghz; Less efficient at penetrating materials meaning Shorter Range, However More individual Channels
+
+Overlap;
+2.4 Ghz; Channels that don’t overlap; Channel 1, 6 and 11. This means CCI is real.
+
+802.11h; Uses DFS to scan for radar signals, to avoid interference with radar and cellular communications in 5 GHz
+
+MIMO Notation;
+AxB:C
+A; Transmit
+B;Receive   C; Simultaenous
+MI-MIMO; 
+DL MUMIMO = WiFi 5, can support up to 6 stations
+UL MUMIMO = WiFi 6, can support up to 8 stations
+
+
+Band Steering; 
+Most Wi-Fi devices have dual band. Or Tri-band (2.4,5,6 Ghz) radios Band steering allows an access point to make it more likely that client connects to 5 Ghz or 6 Ghz instead of 2.4 Ghz Band.
+
+Cellular Technologies
+Cellular radio establishes connection with nearest available cell or base stations.
+Range; 5 m or 8 kilometers.
+4G/LTE; Maximum DL of 150 Mbps in theory, but real world 20 Mbps.
+LTE-A; Max 300 Mbps DL, but real world 90 mbps.
+5G; 5G needs hundreds of small antennas, rather than a single large one. Called a Massive MIMO
+Max 20G, real world, 300 Mbps
+
+Satellite Technologies; satellites uses a microwave dish to align to orbital satelites
+GEO; Higher Latency. Geostationary orbit much far from earth. Installed using VSAT
+LEO; Lower Latency. Low Earth orbit. Much closer from the earth, however, u need to realign it periodically unlike GEO.
+
+Spine and leaf topology
+is good for supporting east-west traffic, and use of SDN and overlay networks.
+Spine; Backbone. Backbone of Top-Tier Distribution switches.
+Leaf; Access switches, each connected to the spine, however not connecting to each leaf.
+No loops STP NOT needed, Uses ECMP; to distribute traffic between links.
+ToR; Top of Rack Switches, Used in leaf. These switches are fast AF. 40/100 Gbps Uplink.
+
+Storage Area networks are commonly used in Data centers to Provisions access to storage devices using block input/output (I/O) a San is isolated from the main network. It is only accessed by servers.
+
+SAN has a mix of supporting stuff; like it can support RAID, tape libraries, etc. allowing for supported fabrics. It has a variety of fabrics. Can integrate different types of storage.
+
+SAN Fabrics;
+
+Fibre Channel; Uses Fiber cables but doesn't]’t rely on it. A SAN based on Fibrechannel Switched Fabric (FC-SW) Involves 3 main types of components;
+Initiator; Servers with HBA (host Bus Adapter) jhas access to the SAN.
+Target; A fabric. The Storage Device, can include; Raid ARRAYS, Tape drives and tape libraries, etc. They are divided into logical volumes and identified by LUNs.
+LUN ; 64 Bit logical Unit Number
+The initiator will use SCSI, SAS, SATA or NVMe commands to operate the storage devices in network, depending on which interface they support.
+FC Switch; Provides the connection between initiator and targets. High performance FC switches are often referred to as directors. 
+
+Fibre channels can use rates from 1GFC (1 Gbps) up to 128 GFC. Fibre Channel uses dedicated SFP+ and QSFP and twinax modular transceivers. Fibrechannels are ethernet transceivers can’t match.
+
+The intiators and targets are identified by 64 bit WorldWide Names (WWN) Similar to network adapter MAC address. Initators and targets are allocated their own WWN, referred to as WWNN. also each port on them can have its own WWPN
+WWN; Uniquely identify initators or targets
+WWPN; Ports can also have identifiers!
+WWNN; WWN allocated.
+
+As most SANs now depend on use of fast, highly parallel SSDs, the NVMe specification is typicalyl preferred over the older SCSI interface. Using NVMe in a networked environment is referred to as NVMe over Fabrics NVMe-oF. NVMe over FC.
+
+Converged Ethernet; 
+The reason for using fibre channel fabric over standard ethernet is that SAN has QoS mechanisms to ensure flow control and guaranteed delivery. A new iteration of ethernet is referred to as lossless ethernet, data center ethernet, or converged enhanced ethernet has been developed as an alternate SAN Fabric
+
+FCoE; Encapsulates FC Over Ethernet Pakcets. FCoE requires 10/40/100G adapters that combine NIC and HBA, ← Reffered to as CNA (Converged Network Adapter)
+
+RCoE; NVMe overe RDMA. Better than NVMe/FC as it offloads storage transfers from CPU
+
+A more Modern option is nvmE over Remote directory memory access RDMA. over converged Ethernet RoCE. RDMA is a way of offloading storage transfers from CPU and OS to improve performance and NVMe / FC 
+
+TCP/IP 
+iSCI = IP tunnelling protocol that enables transfers over iSCSI. iSCSI is used to link data over SANs but is also seen as alternative to fibre channel or converged Ethernet. As it works with regular ethernet Adapters and switches.
+
+Overlay network; logical links between nodes
+VXLAN; Uses layer 2 encapsulation that runs over L3.
+Parts of VXLAN
+VNI; 24 bitt to allocate a VXLAN (16 million VXLANS)
+VTEP; Endpoint, tunnels VNI, encapsulates VNI.
+
+EVPN; Ethernet VPN uses BGP to advertise eVXLAN networks and nodes as routers. EVPN is an alternative to VNI and VTEP 
+(VNI is manual) 
+
+DCI; Data center interconnect. Interconnecting data centers using VXLAN and EVPN
+EVPN allows to discover MAC address and forward them.
+
+RAS; Remote Access Server; server or network device that allows users to connect to a private network from a remote location.
+Encrypted packet → secure connection
+
+Host-to-Host → 1:1 computer
+Site-to-Site → network to network
+U install device inside a LAN (on both ends) to act as gateway 
+
+Remote Access →single user to network
+VPN concentrator in Premises end. 
+Uses VPN client (software) <- the host installs software
+
+
+Clientless → Remote Access without software
+
+
+Methods for encapsulating;
+PPP; Used serial communications to encapsulate, meaning it Encapsulates on Data Link Layer, common for WAN Links and older dial up connections.
+
+GRE; Encapsulates IP Packets. When moved around next hop routers it is in L2, the routers only looks at  Outer GRE, until it’s finally on destination Router. And then decapsulates it.
+Outer GRE; A packet  that has Ip src and IP Header.
+IP Security; Internet Protocol Security (IPSec) also operates at the Network layer of the OSI model to authenticate hosts and encrypt packets. IPSec is used with other protocols to provide connection security, and it is increasingly used as a standalone VPN protocol.
+TLS/DTLS; Another encapsulating method, but can add extra overhead because it already works on Session Layer.
+
+AH; Authenticates and Integrity by calculating ICV (making sure the payload has not been modified) 
+ESP; Encrypts the entire payload. Has header, trailer (extra padding for cryptography) and ICV Unlike AH, ESP excludes IP header when calculating ICV.
+
+! With ESP, algorithms for both confidentiality (symmetric cipher) and authentication/integrity (hash function) are usually applied together. It is possible to use one or the other
+
+IPSec Two Modes;
+Transport; IP headers not encrypted, just payload.
+Tunnel; payload encrypted and IP header is hidden to, is encapsulated as datagram with new IP header.
+
+IKE; Authenticates before using AH or ESP. 
+Two phases of IKE; 
+Phase 1; Establishes identity of two peers and performs key agreement. Using diffie-helman algorithm to make secure channel
+Two methods of authenticating peers; 
+Digital certificates; mutually trusted certificate authority to identify one another
+PSK; Passphrase
+Phase 2; Uses secure channel created in phase 1 to establish which ciphers and key sizes will be used with AH and/ESP in IP sec session.
+
+Two Version of IKE:
+IKE Version 1; for site-to-site and host-to-host topologies and requires a supporting protocol to implement remote access VPNS.
+IKEv2; Has additional features that have made the protocol popular for use as stand alone remote access client-to-Site VPN solutions. The main changes are following;
+-Support EAP, ex; user authentication against a RADIUS server.
+-Provides a simple setup mode that reduces bandwidth without compromising security
+-Allow for NAT and MOBIKE multihoming
+Multihoming means that a smartphone client with Wi-Fi and cellular interfaces can keep the IPsec connection alive when switching between them.
+MOBIKE = Mobility and Multihoming Protocol It’s an extension to IKEv2 that lets an IPsec VPN survive IP address changes.
+L2TP; L2TP is a Layer 2 tunneling protocol used to carry PPP frames over an IP network.
